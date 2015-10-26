@@ -1,0 +1,75 @@
+{
+  "lambda": {
+    "envVars": [
+      "UPLOAD_API_KEY",
+      "UPLOAD_API_SECRET",
+      "HASH_SECRET",
+      "BUCKET_NAME",
+      "BUCKET_REGION"
+    ],
+    "deploy": true,
+    "package": {
+      "optimize": {
+        "builder": "browserify",
+        "minify": true,
+        "ignore": [],
+        "exclude": [
+          "aws-sdk"
+        ],
+        "includePaths": []
+      },
+      "excludePatterns": []
+    },
+    "cloudFormation": {
+      "Description": "",
+      "Handler": "aws_modules/fileexchange/createsessiontoken/handler.handler",
+      "MemorySize": 1024,
+      "Runtime": "nodejs",
+      "Timeout": 6
+    }
+  },
+  "apiGateway": {
+    "deploy": false,
+    "cloudFormation": {
+      "Type": "AWS",
+      "Path": "fileexchange/createsessiontoken",
+      "Method": "POST",
+      "AuthorizationType": "none",
+      "ApiKeyRequired": false,
+      "RequestTemplates": {},
+      "RequestParameters": {},
+      "Responses": {
+        "400:.*": {
+          "statusCode": "400",
+          "responseParameters": {
+            "method.response.header.Access-Control-Allow-Origin": "'*'"
+          }
+        },
+        "403:.*": {
+          "statusCode": "403",
+          "responseParameters": {
+            "method.response.header.Access-Control-Allow-Origin": "'*'"
+          }
+        },
+        "500:.*": {
+          "statusCode": "500",
+          "responseParameters": {
+            "method.response.header.Access-Control-Allow-Origin": "'*'"
+          }
+        },
+        "default": {
+          "statusCode": "200",
+          "responseParameters": {
+            "method.response.header.Access-Control-Allow-Origin": "'*'",
+            "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization'",
+            "method.response.header.Access-Control-Allow-Methods": "'POST'"
+          },
+          "responseModels": {},
+          "responseTemplates": {
+            "application/json": ""
+          }
+        }
+      }
+    }
+  }
+}

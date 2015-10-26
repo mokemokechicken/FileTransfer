@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Upload Key</title>
+    <link rel="stylesheet" type="text/css" href="send_file.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="./env.js"></script>
+    <script src="./create_key.js"></script>
+</head>
+<body>
+    <div id="head">
+        <a href="index.html">Upload Page</a>
+    </div>
+    <div id="input-area">
+        <p>
+            <label for="master-key">マスターキー</label>
+            <input type="text" size="120" id="master-key" value="">
+        </p>
+
+        <p>
+            <label for="key-name">鍵の名前(英数字で)</label>
+            <input type="text" size="20" id="key-name" value="">
+        </p>
+
+        <p>
+            <label for="expire-date">有効期限(YYYY/MM/DD)</label>
+            <input type="text" size="20" id="expire-date" value="">
+        </p>
+    </div>
+
+    <div id="action-area">
+        <div>
+            <button class="button" id="generate-button">UploadKeyを作成する</button>
+        </div>
+    </div>
+
+    <div id="result"></div>
+
+    <script type="application/javascript">
+        KeyGenerator({
+            apiBase: Env.API_BASE,
+            masterKey: 'master-key',
+            keyName: 'key-name',
+            expireDate: 'expire-date',
+            generateButton: 'generate-button',
+            result: 'result'
+        });
+    </script>
+
+</body>
+</html>

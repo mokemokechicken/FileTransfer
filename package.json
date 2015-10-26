@@ -1,0 +1,19 @@
+{
+  "name": "FileExchange",
+  "version": "0.0.1",
+  "description": "A JAWS application",
+  "author": "me",
+  "license": "",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/"
+  },
+  "keywords": [],
+  "devDependencies": {},
+  "dependencies": {
+    "aws-sdk": "^2.2.11",
+    "jaws-core-js": "~0.0.2",
+    "sha256": "^0.2.0"
+  }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Download File</title>
+    <link rel="stylesheet" type="text/css" href="send_file.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
+    <script src="./env.js"></script>
+    <script src="./down.js"></script>
+</head>
+<body>
+    <div id="input-area">
+        <p>
+            <label for="download-key">Download Key</label>
+            <input type="text" size="120" id="download-key" value="">
+        </p>
+    </div>
+
+    <div id="action-area">
+        <div>
+            <button class="button" id="download-button">Downloadする</button>
+        </div>
+    </div>
+
+    <script type="application/javascript">
+        FileDownload({
+            apiBase: Env.API_BASE,
+            downBase: Env.DOWN_BASE,
+            downloadKey: 'download-key',
+            downloadButton: 'download-button'
+        });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+{
+  "lambda": {
+    "envVars": [
+      "HASH_SECRET",
+      "MASTER_SECRET"
+    ],
+    "deploy": true,
+    "package": {
+      "optimize": {
+        "builder": "browserify",
+        "minify": true,
+        "ignore": [],
+        "exclude": [
+          "aws-sdk"
+        ],
+        "includePaths": []
+      },
+      "excludePatterns": []
+    },
+    "cloudFormation": {
+      "Description": "",
+      "Handler": "aws_modules/fileexchange/createuploadkey/handler.handler",
+      "MemorySize": 1024,
+      "Runtime": "nodejs",
+      "Timeout": 6
+    }
+  },
+  "apiGateway": {
+    "deploy": false,
+    "cloudFormation": {
+      "Type": "AWS",
+      "Path": "fileexchange/createuploadkey",
+      "Method": "GET",
+      "AuthorizationType": "none",
+      "ApiKeyRequired": false,
+      "RequestTemplates": {
+        "application/json": "{\"masterKey\":\"$input.params('masterKey')\", \"name\":\"$input.params('name')\", \"expire\":\"$input.params('expire')\"}"
+      },
+      "RequestParameters": {},
+      "Responses": {
+        "400:.*": {
+          "statusCode": "400",
+          "responseParameters": {
+            "method.response.header.Access-Control-Allow-Origin": "'*'"
+          }
+        },
+        "403:.*": {
+          "statusCode": "403",
+          "responseParameters": {
+            "method.response.header.Access-Control-Allow-Origin": "'*'"
+          }
+        },
+        "500:.*": {
+          "statusCode": "500",
+          "responseParameters": {
+            "method.response.header.Access-Control-Allow-Origin": "'*'"
+          }
+        },
+        "default": {
+          "statusCode": "200",
+          "responseParameters": {
+            "method.response.header.Access-Control-Allow-Origin": "'*'"
+          },
+          "responseModels": {},
+          "responseTemplates": {
+            "application/json": ""
+          }
+        }
+      }
+    }
+  }
+}

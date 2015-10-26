@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <title>File Exchange</title>
+    <link rel="stylesheet" type="text/css" href="send_file.css">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
+    <script src="./env.js"></script>
+    <script src="./send_file.js"></script>
+</head>
+<body>
+    <div id="head">
+        <a href="create_key.html">Create Upload Key</a>
+    </div>
+
+    <div id="input-area">
+        <p>
+            <label for="upload-key">Upload Key:</label>
+            <input type="text" size="120" id="upload-key" value="">
+        </p>
+        <p>
+            <label for="expire-hour">Download Linkの有効期間(時間)</label>
+            <input type="text" size="20" id="expire-hour" value="24">
+        </p>
+
+        <p>
+            <label for="download-password">Download パスワード</label>
+            <input type="text" size="20" id="download-password" value="">
+        </p>
+    </div>
+    <div id="drop-area">
+        <div id="upload-message">
+            <p>アップロードするファイルをドロップ</p>
+            <p>または</p>
+        </div>
+        <div class="btn-group">
+            <input type="file" id="file-chooser" />
+            <button class="button" id="file-select-button">ファイルを選択</button>
+        </div>
+        <div>
+            <button class="button" id="upload-button">Upload to S3</button>
+        </div>
+    </div>
+
+    <div id="result"></div>
+
+    <script type="application/javascript">
+        FileUploader({
+            apiBase: Env.API_BASE,
+            webBase: Env.WEB_BASE,
+            fileChooser: 'file-chooser',
+            uploadButton: 'upload-button',
+            result: 'result',
+            uploadKey: 'upload-key',
+            expireHour: 'expire-hour',
+            dropArea: 'drop-area',
+            fileSelectButton: 'file-select-button',
+            uploadMessage: 'upload-message',
+            downloadPassword: 'download-password'
+        });
+    </script>
+</body>
+</html>

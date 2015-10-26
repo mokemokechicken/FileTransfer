@@ -1,0 +1,28 @@
+{
+  "name": "FileExchange",
+  "version": "0.0.1",
+  "location": "https://github.com/...",
+  "author": "",
+  "description": "",
+  "domain": "file-exchange.yumemi.jp",
+  "stages": {
+    "dev": [
+      {
+        "region": "ap-northeast-1",
+        "iamRoleArnLambda": "arn:aws:iam::414867676510:role/dev-FileExchange-r-IamRoleLambda-HTDRY6PA5512",
+        "iamRoleArnApiGateway": "arn:aws:iam::414867676510:role/dev-FileExchange-r-IamRoleApiGateway-1NF3Q49DYX4G7",
+        "jawsBucket": "jaws.dev.apnortheast1.file-exchange.yumemi.jp",
+        "restApiId": "9ru7507fd3"
+      }
+    ],
+    "prod": [
+      {
+        "region": "ap-northeast-1",
+        "iamRoleArnLambda": "arn:aws:iam::414867676510:role/prod-FileExchange-r-IamRoleLambda-7FB3K63OZWEU",
+        "iamRoleArnApiGateway": "arn:aws:iam::414867676510:role/prod-FileExchange-r-IamRoleApiGateway-146RB4VYEO46G",
+        "jawsBucket": "jaws.prod.apnortheast1.file-exchange.yumemi.jp",
+        "restApiId": "93qe7c18td"
+      }
+    ]
+  }
+}
